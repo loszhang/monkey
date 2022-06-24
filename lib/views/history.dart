@@ -19,40 +19,35 @@ class _HistoryState extends State<History> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          CustomScrollView(
-            slivers: [
-              SliverAppBar(
-                backgroundColor: Colors.white10,
-                floating: true,
-                pinned: true,
-                snap: true,
-                expandedHeight: 55,
-                bottom: TabBar(
-                  controller: _tabController,
-                  tabs: [
-                    Tab(
-                      text: 'History',
-                    ),
-                    Tab(
-                      text: 'Favorites',
-                    ),
-                  ],
-                ),
-              )
-            ],
-          ),
-          Positioned(
-            top: 30,
-            left: 10,
-            child: IconButton(
-              icon: Icon(Icons.arrow_back, color: Colors.black),
-              onPressed: () {
-                Navigator.pop(context);
-              },
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios, color: Colors.black),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        title: TabBar(
+          indicatorColor: Colors.black,
+          indicatorSize: TabBarIndicatorSize.label,
+          labelColor: Colors.black,
+          controller: _tabController,
+          tabs: [
+            Tab(
+              text: 'Visited',
             ),
-          )
+            Tab(
+              text: 'Viewed',
+            ),
+          ],
+        ),
+      ),
+      body: TabBarView(
+        controller: _tabController,
+        children: [
+          Text('History'),
+          Text('Viewed')
         ],
       ),
     );
